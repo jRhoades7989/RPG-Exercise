@@ -48,6 +48,12 @@ class Person:
         mgh = self.magic[i]["dmg"] + 5
         return random.randrange(mgl, mgh)
 
+    def use_mp(self, cost):
+        self.mp -= cost
+        if self.mp < 0:
+            self.mp = 0
+        return self.mp
+
     def take_damage(self, dmg):
         self.hp -= dmg
         if self.hp < 0:
@@ -69,7 +75,7 @@ class Person:
         return self.mp
 
     def get_max_mp(self):
-        return self.mp
+        return self.maxmp
 
     def reduce_mp(self, cost):
         self.mp -= cost
