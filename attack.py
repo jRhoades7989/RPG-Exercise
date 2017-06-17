@@ -1,4 +1,4 @@
-
+from classes.game import Person, bcolors
 
 
 magic = [{"name": "Fire", "cost": 10, "dmg": 100},
@@ -70,12 +70,13 @@ while running:
         dmg = player.generate_damage()
         enemy.take_damage(dmg)
         if enemy.hp > 0:
-            print("You dealt", dmg, "points of damage! the enemy has",
-                  enemy.hp, "hit points left")
+            print("You dealt" + bcolors.FAIL + bcolors.BOLD, dmg, bcolors.ENDC
+                  + "points of damage! The enemy has" + bcolors.OKGREEN +
+                  bcolors.BOLD, enemy.hp, bcolors.ENDC + "hit points left")
         else:
             enemy.hp = 0
             print("You dealt" + bcolors.BOLD + bcolors.FAIL, dmg, bcolors.ENDC +
-                  "points of damage! the enemy has been defeated")
+                  "points of damage! The enemy has been defeated")
             prompt_restart()
             continue
     elif (choice == "2") or (str.lower(choice) == "magic"):
@@ -93,13 +94,16 @@ while running:
             enemy.take_damage(magic_damage)
             if enemy.hp > 0:
                 print("You attack it with " + magic_color[spell] + bcolors.BOLD
-                      + spell_name + bcolors.ENDC + " and deal", magic_damage, 
-                      "points of damage!")
+                      + spell_name + bcolors.ENDC + " and deal" + 
+                      bcolors.BOLD + bcolors.FAIL, magic_damage, 
+                      bcolors.ENDC + "points of damage! The enemy has" + 
+                      bcolors.OKGREEN + bcolors.BOLD, enemy.hp, bcolors.ENDC 
+                      + "hit points left")
             else:
                 enemy.hp = 0
                 print("You attack it with " + magic_color[spell] + bcolors.BOLD
-                      + spell_name + bcolors.ENDC + " and deal", magic_damage, 
-                      "points of damage!")
+                      + spell_name + bcolors.ENDC + " and deal" 
+                      "points of damage! The enemy has been defeated")
                 prompt_restart()
 
         
@@ -124,10 +128,10 @@ while running:
     player.take_damage(enemy_dmg)
     if player.hp > 0:
         print("Enemy attacks for" + bcolors.BOLD + bcolors.FAIL, enemy_dmg,
-              bcolors.ENDC + "points of damage! You have", player.hp,
-              "hit points left.")
+              bcolors.ENDC + "points of damage! You have" + bcolors.OKGREEN + 
+              bcolors.BOLD, player.hp, bcolors.ENDC + "hit points left.")
     else:
         player.hp = 0
-        print("Enemy attacks for", enemy_dmg, "points of damage! You are "
-              "defeated.")
+        print("Enemy attacks for" + bcolors.FAIL + bcolors.BOLD, 
+              enemy_dmg, bcolors.ENDC + "points of damage! You are defeated.")
         prompt_restart()
